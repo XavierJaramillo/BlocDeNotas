@@ -3,10 +3,10 @@
   <div class="col-12 col-md-">
     <div class="card shadow-sm mb-3 bg-body-tertiary rounded">
       <div class="card-body">
-        <div class="d-flex justify-content-between align-items-center">
-          <h5 class="card-title font-weight-bold text-uppercase m-0">
-            Actualmente no hay notas.
-          </h5>
+        <div class="d-flex justify-content-center align-items-center">
+          <span class="card-title font-weight-bold text-uppercase m-0 fs-4">
+             Sin resultados.
+          </span>
         </div>
       </div>
     </div>

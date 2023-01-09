@@ -12,17 +12,25 @@ $(document).ready(function() {
     $('#search').on('keyup', function() {
         let search = $(this).val();
 
-        $.ajax({
-            type: 'POST',
-            url: baseUrl + "/api/notas/search",
-            data: {
-                "where": search
-            },
-            success: function(data) {
-                $('#notas_div').empty();
-                $('#notas_div').append(data);
-            }
-        });
+        let pagina = 1;
+        if ($('.pagination > .active').length > 0) {
+            pagina = $('.pagination > .active')[0].innerText;
+        }
+
+        if (search != null || search.trim() !== '') {
+            $.ajax({
+                type: 'POST',
+                url: baseUrl + "/api/notas/search",
+                data: {
+                    "where": search,
+                    "pagina": pagina
+                },
+                success: function(data) {
+                    $('#notas_div').empty();
+                    $('#notas_div').append(data);
+                }
+            });
+        }
     })
 
     $(document).on('click', 'a', function(event) {

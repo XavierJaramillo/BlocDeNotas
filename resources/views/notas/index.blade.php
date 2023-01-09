@@ -16,19 +16,19 @@
 
 <body>
     <main>
-        <div class="album py-5 bg-light">
+        <div class="py-3 bg-light">
             <div class="container p-3">
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-12 col-md-4">
                         <h1>Bloc de notas</h1>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-6 col-md-4">
                         <div class="input-group">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Buscador</span>
                             <input type="text" id="search" class="form-control">
                         </div>
                     </div>
-                    <div class="col-12 col-md-4">
+                    <div class="col-6 col-md-4">
                         <div class="d-flex justify-content-end align-items-center">
                             <button class="btn btn-primary btn-sm px-4 js-crear" data-url="/notas/create">Crear</button>
                         </div>
