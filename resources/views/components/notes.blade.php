@@ -1,6 +1,5 @@
 @if($notes->total() == 0)
-  <div class="col-0"></div>
-  <div class="col-12 col-md-">
+  <div class="col-12">
     <div class="card shadow-sm mb-3 bg-body-tertiary rounded">
       <div class="card-body">
         <div class="d-flex justify-content-center align-items-center">
@@ -11,7 +10,6 @@
       </div>
     </div>
   </div>
-  <div class="col-0"></div>
 @endif
 
 @foreach ($notes as $note)
