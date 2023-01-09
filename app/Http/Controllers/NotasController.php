@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Nota;
+use App\Repositories\Interfaces\NotaRepositoryInterface;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -12,6 +13,13 @@ use Illuminate\View\View;
 
 class NotasController extends Controller
 {
+    private $notaRepository;
+
+    public function __construct(NotaRepositoryInterface $notaRepository)
+    {
+        $this->notaRepository = $notaRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,15 +37,12 @@ class NotasController extends Controller
         if($request->ajax()) {
             $inicio = ($pagina * 6) - 6;
 
-            $notas = Nota::select()
-                        ->offset($inicio)
-                        ->limit(6)
-                        ->get();
+            $data = $this->notaRepository->searchNotas(null, $inicio);
 
             return Blade::render(
                 '<x-notas :notas="$notas" />',
                 [
-                    "notas" => new LengthAwarePaginator($notas, Nota::count(), 6, $pagina)
+                    "notas" => new LengthAwarePaginator($data['notas'], Nota::count(), $data['limit'], $pagina)
                 ]
             );
         }
@@ -46,27 +51,13 @@ class NotasController extends Controller
     public function search(Request $request) {
         if($request->ajax()) {
             $inicio = ($request->pagina * 6) - 6;
-
-            $notas = new Nota;
-                      
-            if($request->where) {
-                $notas = $notas->where('titulo', 'like', "%$request->where%")
-                    ->orWhere('cuerpo', 'like', "%$request->where%");
-            }
-
-            $notas = $notas->offset($inicio)
-                ->limit(6)
-                ->get();
-
-            $notaCount = Nota::count();
-            if($request->where) {
-                $notaCount = count($notas);
-            }
+         
+            $data = $this->notaRepository->searchNotas($request->where, $inicio);
 
             return Blade::render(
                 '<x-notas :notas="$notas" />',
                 [
-                    "notas" => new LengthAwarePaginator($notas, $notaCount, 6, $request->pagina)
+                    "notas" => new LengthAwarePaginator($data['notas'], $data['notaCount'], 6, $request->pagina)
                 ]
             );
         }
