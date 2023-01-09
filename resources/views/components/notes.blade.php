@@ -1,4 +1,4 @@
-@if($notas->total() == 0)
+@if($notes->total() == 0)
   <div class="col-0"></div>
   <div class="col-12 col-md-">
     <div class="card shadow-sm mb-3 bg-body-tertiary rounded">
@@ -14,8 +14,8 @@
   <div class="col-0"></div>
 @endif
 
-@foreach ($notas as $nota)
-  <div class="col-12 col-md-6 cardsNotas">
+@foreach ($notes as $note)
+  <div class="col-12 col-md-6 cardsNotes">
       <div class="card p-3 shadow-sm mb-3 bg-body-tertiary rounded">
         <div class="card-body">
           <div class="d-flex justify-content-between align-items-center mb-4">
@@ -33,7 +33,7 @@
                   </div>
                   <div class="col-12">
                     <span class="fs-6">
-                      {{$nota->created_at->format('d-m-Y');}} 
+                      {{$note->created_at->format('d-m-Y');}} 
                     <span>
                   </div>
                 </div>
@@ -45,22 +45,22 @@
                 <i class="bi bi-three-dots-vertical"></i>
               </button>
               <ul class="dropdown-menu">
-                <li><button class="dropdown-item js-edit" data-url="/notas/{{$nota->id}}/edit" type="button">Editar</button></li>
-                <li><button class="dropdown-item js-delete" data-url="/notas/{{$nota->id}}" type="button">Eliminar</button></li>
+                <li><button class="dropdown-item js-edit" data-url="/notes/{{$note->id}}/edit" type="button">Editar</button></li>
+                <li><button class="dropdown-item js-delete" data-url="/notes/{{$note->id}}" type="button">Eliminar</button></li>
               </ul>
             </div>
           </div>
           <h5 class="card-title font-weight-bold text-uppercase">
-            {{$nota->titulo}} 
+            {{$note->titulo}} 
           </h5>
-          <p class="card-text">{{$nota->cuerpo_format}}</p>
+          <p class="card-text">{{$note->cuerpo_format}}</p>
         </div>
       </div>
   </div>
 @endforeach
 
 <div class="d-flex justify-content-center pt-2">
-  {{ $notas->links() }}
+  {{ $notes->links() }}
 </div>
 
 <script>
@@ -72,7 +72,7 @@
         url: baseUrl + url,
         success: function(data) {
             $('#modal-body').empty();
-            $('#modal-title').text("Editar nota");
+            $('#modal-title').text("Editar note");
             $('#modal-body').append(data);
             $('#modal').modal('show');
         }
@@ -91,11 +91,11 @@
                   pagina = $('.pagination > .active')[0].innerText;
               }
 
-              if($('.cardsNotas').length == 1) {
+              if($('.cardsNotes').length == 1) {
                 pagina = pagina - 1;
               }
 
-              getNotas(pagina);
+              getNotes(pagina);
             }
         });
     });

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\NotasController;
+use App\Http\Controllers\NotesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group([
-    'prefix' => 'notas',
-    'as' => 'notas.',
+    'prefix' => 'notes',
+    'as' => 'notes.',
 ], function () {
-    Route::get('/getNotas/{pagina}', [NotasController::class, 'getNotas'])
-    ->name('getNotas');
+    Route::get('/getNotes/{pagina}', [NotesController::class, 'getNotes'])
+    ->name('getNotes');
 
-    Route::post('/search', [NotasController::class, 'search'])
+    Route::post('/search', [NotesController::class, 'search'])
     ->name('search');
 });

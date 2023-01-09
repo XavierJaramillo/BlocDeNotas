@@ -1,12 +1,12 @@
 <div>
-    <form id="notaForm" method="POST" action="{{route('notas.store')}}">
+    <form id="noteForm" method="POST" action="{{route('notes.store')}}">
         @csrf
 
-        <input type="hidden" name="nota_id" value="{{$nota->id}}" />
+        <input type="hidden" name="note_id" value="{{$note->id}}" />
 
         <div class="mb-3">
             <label for="titulo" class="form-label">Titulo</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" value="{{$nota->titulo}}" required>
+            <input type="text" class="form-control" id="titulo" name="titulo" value="{{$note->titulo}}" required>
             
             <div id="tituloFeedback" class="invalid-feedback" style="display:none">
                 {{ $errors->first("titulo") }}
@@ -14,7 +14,7 @@
         </div>
         <div class="mb-3">
             <label for="cuerpo" class="form-label">Cuerpo</label>
-            <textarea class="form-control" rows="10" id="cuerpo" name="cuerpo" required>{{ $nota->cuerpo }}</textarea>
+            <textarea class="form-control" rows="10" id="cuerpo" name="cuerpo" required>{{ $note->cuerpo }}</textarea>
             
             <div id="cuerpoFeedback" class="invalid-feedback" style="display:none">
                 {{ $errors->first("cuerpo") }}
@@ -29,7 +29,7 @@
 </div>
 
 <script>
-    $('#notaForm').on('submit', function(e) {
+    $('#noteForm').on('submit', function(e) {
         e.preventDefault();
 
         let url = $(this).attr('action');
@@ -40,11 +40,15 @@
             dataType: "json",
             data: $(this).serializeArray(),
             success: function success(data) {
-                let pagina = 1;
-                if($('.pagination > .active').length > 0) {
-                    pagina = $('.pagination > .active')[0].innerText;
+                if($('#search').val()) {
+                    $('#search').keyup();
+                } else {
+                    let pagina = 1;
+                    if($('.pagination > .active').length > 0) {
+                        pagina = $('.pagination > .active')[0].innerText;
+                    }
+                    getNotes(pagina);
                 }
-                getNotas(pagina);
                 $('#modal').modal('hide');
             },
             error: function error(data) {

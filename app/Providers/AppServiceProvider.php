@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use App\Repositories\Interfaces\NotaRepositoryInterface;
-use App\Repositories\NotaRepository;
+use App\Repositories\Interfaces\NoteRepositoryInterface;
+use App\Repositories\NoteRepository;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(NotaRepositoryInterface::class, NotaRepository::class);
+        $this->app->bind(NoteRepositoryInterface::class, NoteRepository::class);
     }
 
     /**

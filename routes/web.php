@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\NotasController;
+use App\Http\Controllers\NotesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,25 +14,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [NotasController::class, 'index'])
+Route::get('/', [NotesController::class, 'index'])
 ->name('index');
 
 Route::group([
-    'prefix' => 'notas',
-    'as' => 'notas.',
+    'prefix' => 'notes',
+    'as' => 'notes.',
 ], function () {
-    Route::get('/', [NotasController::class, 'index'])
+    Route::get('/', [NotesController::class, 'index'])
     ->name('home');
 
-    Route::get('/{nota}/edit', [NotasController::class, 'edit'])
+    Route::get('/{note}/edit', [NotesController::class, 'edit'])
     ->name('edit');
 
-    Route::get('create', [NotasController::class, 'create'])
+    Route::get('create', [NotesController::class, 'create'])
     ->name('create');
 
-    Route::post('/store', [NotasController::class, 'store'])
+    Route::post('/store', [NotesController::class, 'store'])
     ->name('store');
 
-    Route::delete('/{nota}', [NotasController::class, 'destroy'])
+    Route::delete('/{note}', [NotesController::class, 'destroy'])
     ->name('destroy');
 });

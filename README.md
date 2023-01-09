@@ -7,8 +7,8 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Comando para crear notas de test
-php artisan db:seed --class=NotaTableSeeder
+## Comando para crear notes de test
+php artisan db:seed --class=NoteTableSeeder
 
 ## Nombre de la bd
-bloc_de_notas
+bloc_de_notes

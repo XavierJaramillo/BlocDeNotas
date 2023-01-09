@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Bloc de notas</title>
+    <title>Bloc de notes</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
@@ -20,7 +20,7 @@
             <div class="container p-3">
                 <div class="row mb-3">
                     <div class="col-12 col-md-4">
-                        <h1>Bloc de notas</h1>
+                        <h1>Bloc de notes</h1>
                     </div>
                     <div class="col-6 col-md-4">
                         <div class="input-group">
@@ -30,12 +30,12 @@
                     </div>
                     <div class="col-6 col-md-4">
                         <div class="d-flex justify-content-end align-items-center">
-                            <button class="btn btn-primary btn-sm px-4 js-crear" data-url="/notas/create">Crear</button>
+                            <button class="btn btn-primary btn-sm px-4 js-crear" data-url="/notes/create">Crear</button>
                         </div>
                     </div>
                 </div>
-                <div id="notas_div" class="row g-3">
-                    <x-notas :notas="$notas"/>
+                <div id="notes_div" class="row g-3">
+                    <x-notes :notes="$notes"/>
                 </div>
             </div>
         </div>
@@ -51,13 +51,13 @@
 </script>
 
 <script>
-    function getNotas(pagina) {
+    function getNotes(pagina) {
         $.ajax({
             type: 'GET',
-            url: baseUrl + "/api/notas/getNotas/" + pagina,
+            url: baseUrl + "/api/notes/getNotes/" + pagina,
             success: function(data) {
-                $('#notas_div').empty();
-                $('#notas_div').append(data);
+                $('#notes_div').empty();
+                $('#notes_div').append(data);
             }
         });
     }

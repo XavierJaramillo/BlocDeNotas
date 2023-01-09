@@ -2,21 +2,20 @@
 
 namespace App\View\Components;
 
-use App\Models\Nota;
 use Illuminate\View\Component;
 
-class FormNotaComponent extends Component
+class NotesComponent extends Component
 {
-    public $nota;
-
+    public $notes;
+    
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(Nota $nota = new Nota())
+    public function __construct(array $notes)
     {
-        $this->nota = $nota;
+        $this->notes = $notes;
     }
 
     /**
@@ -26,6 +25,6 @@ class FormNotaComponent extends Component
      */
     public function render()
     {
-        return view('components.form-nota-component');
+        return view('components.notes');
     }
 }
