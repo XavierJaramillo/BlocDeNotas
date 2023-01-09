@@ -17,8 +17,8 @@ return new class extends Migration
         Schema::create('notes', function (Blueprint $table) {
             $table->id();
 
-            $table->string('titulo', 50);
-            $table->longText('cuerpo');
+            $table->string('title', 50);
+            $table->longText('body');
 
             $table->timestamps();
             $table->softDeletes();

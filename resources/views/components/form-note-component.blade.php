@@ -5,19 +5,19 @@
         <input type="hidden" name="note_id" value="{{$note->id}}" />
 
         <div class="mb-3">
-            <label for="titulo" class="form-label">Titulo</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" value="{{$note->titulo}}" required>
+            <label for="title" class="form-label">Título</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{$note->title}}" required>
             
-            <div id="tituloFeedback" class="invalid-feedback" style="display:none">
-                {{ $errors->first("titulo") }}
+            <div id="titleFeedback" class="invalid-feedback" style="display:none">
+                {{ $errors->first("title") }}
             </div>
         </div>
         <div class="mb-3">
-            <label for="cuerpo" class="form-label">Cuerpo</label>
-            <textarea class="form-control" rows="10" id="cuerpo" name="cuerpo" required>{{ $note->cuerpo }}</textarea>
+            <label for="body" class="form-label">Cuerpo</label>
+            <textarea class="form-control" rows="10" id="body" name="body" required>{{ $note->body }}</textarea>
             
-            <div id="cuerpoFeedback" class="invalid-feedback" style="display:none">
-                {{ $errors->first("cuerpo") }}
+            <div id="bodyFeedback" class="invalid-feedback" style="display:none">
+                {{ $errors->first("body") }}
             </div>
         </div>
 

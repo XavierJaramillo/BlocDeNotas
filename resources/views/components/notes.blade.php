@@ -51,9 +51,9 @@
             </div>
           </div>
           <h5 class="card-title font-weight-bold text-uppercase">
-            {{$note->titulo}} 
+            {{$note->title}} 
           </h5>
-          <p class="card-text">{{$note->cuerpo_format}}</p>
+          <p class="card-text">{{$note->body_format}}</p>
         </div>
       </div>
   </div>

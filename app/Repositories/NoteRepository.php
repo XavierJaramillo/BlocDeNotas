@@ -12,8 +12,8 @@ class NoteRepository implements NoteRepositoryInterface
         $notes = new Note;
 
         if($where) {
-            $notes = $notes->where('titulo', 'like', "%$where%")
-                ->orWhere('cuerpo', 'like', "%$where%");
+            $notes = $notes->where('title', 'like', "%$where%")
+                ->orWhere('body', 'like', "%$where%");
         }
 
         $notes = $notes->offset($inicio)

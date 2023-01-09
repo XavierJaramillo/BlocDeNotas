@@ -17,8 +17,8 @@ class NoteFactory extends Factory
     public function definition()
     {
         return [
-            'titulo' => fake()->name(),
-            'cuerpo' => fake()->text(450)
+            'title' => fake()->name(),
+            'body' => fake()->text(450)
         ];
     }
 }

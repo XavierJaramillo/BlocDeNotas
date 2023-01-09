@@ -18,26 +18,26 @@ class Note extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'titulo',
-        'cuerpo',
+        'title',
+        'body',
     ];
 
     protected $appends = [
-        'cuerpo_format'
+        'body_format'
     ];
 
     public static function getNotes() {
         return Note::simplePaginate(6);
     }
 
-    public function getCuerpoFormatAttribute()
+    public function getBodyFormatAttribute()
     {
-        $cuerpo = $this->cuerpo;
+        $body = $this->body;
 
-        if (strlen($this->cuerpo) > 150) {
-            $cuerpo = substr($this->cuerpo, 0, 150) . '...';
+        if (strlen($this->body) > 150) {
+            $body = substr($this->body, 0, 150) . '...';
         }
 
-        return $cuerpo;
+        return $body;
     }
 }
