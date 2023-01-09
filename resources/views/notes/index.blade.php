@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Bloc de notes</title>
+    <title>Bloc de notas</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
@@ -20,7 +20,7 @@
             <div class="container p-3">
                 <div class="row mb-3">
                     <div class="col-12 col-md-4">
-                        <h1>Bloc de notes</h1>
+                        <h1>Bloc de notas</h1>
                     </div>
                     <div class="col-6 col-md-4">
                         <div class="input-group">

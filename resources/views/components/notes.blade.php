@@ -72,7 +72,7 @@
         url: baseUrl + url,
         success: function(data) {
             $('#modal-body').empty();
-            $('#modal-title').text("Editar note");
+            $('#modal-title').text("Editar nota");
             $('#modal-body').append(data);
             $('#modal').modal('show');
         }
