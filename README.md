@@ -9,6 +9,7 @@
 
 ## Para levantar servidor y compilador 
 npm run dev
+
 php artisan serve
 
 ## Comando para crear tablas y notes de test
