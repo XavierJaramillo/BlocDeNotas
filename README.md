@@ -7,16 +7,18 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## Para levantar servidor y compilador 
-npm run dev
+## 1. To set up the server
+> npm install
 
-php artisan serve
+> npm run dev
 
-## Comando para crear tablas y notes de test
-php artisan migrate
+> php artisan serve
 
-## Comando para crear notes de test de forma independiente a las migraciones
-php artisan db:seed --class=NoteTableSeeder
+## 2. Command to create tables and test notes
+>php artisan migrate
 
-## Nombre de la bd
-notebook
+## 3. Command to create test notes independently of migrations
+>php artisan db:seed --class=NoteTableSeeder
+
+## 4. DB name
+>notebook
