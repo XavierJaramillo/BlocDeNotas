@@ -6,18 +6,16 @@
 
         <div class="mb-3">
             <label for="title" class="form-label">Título</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{$note->title}}" required>
+            <input type="text" class="form-control" id="title" name="title" value="{{$note->title}}">
             
-            <div id="titleFeedback" class="invalid-feedback" style="display:none">
-                {{ $errors->first("title") }}
+            <div id="titleFeedback" class="invalid-feedback">
             </div>
         </div>
         <div class="mb-3">
             <label for="body" class="form-label">Cuerpo</label>
-            <textarea class="form-control" rows="10" id="body" name="body" required>{{ $note->body }}</textarea>
+            <textarea class="form-control" rows="10" id="body" name="body">{{ $note->body }}</textarea>
             
-            <div id="bodyFeedback" class="invalid-feedback" style="display:none">
-                {{ $errors->first("body") }}
+            <div id="bodyFeedback" class="invalid-feedback">
             </div>
         </div>
 
@@ -34,6 +32,8 @@
 
         let url = $(this).attr('action');
 
+        $('.invalid-feedback').hide().text('');
+
         $.ajax({
             type: 'POST',
             url: url,
@@ -43,8 +43,17 @@
                 refreshNotes();
                 $('#modal').modal('hide');
             },
-            error: function error(data) {
-                console.log(data);
+            error: function error(error) {
+                let errorsJson = error.responseJSON.errors;
+
+                Object.keys(errorsJson).forEach(function(key) {
+                    let messages = errorsJson[key];
+
+                    Object.keys(messages).forEach(function(keyM) {
+                        let message = messages[keyM];
+                        $('#'+key+'Feedback').show().text(message);
+                    });
+                });
             }
         });
     });
