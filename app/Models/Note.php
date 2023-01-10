@@ -26,10 +26,6 @@ class Note extends Model
         'body_format'
     ];
 
-    public static function getNotes() {
-        return Note::simplePaginate(6);
-    }
-
     public function getBodyFormatAttribute()
     {
         $body = $this->body;

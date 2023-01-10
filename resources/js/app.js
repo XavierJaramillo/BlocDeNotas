@@ -12,9 +12,9 @@ $(document).ready(function() {
     $('#search').on('keyup', function() {
         let search = $(this).val();
 
-        let pagina = 1;
+        let page = 1;
         if ($('.pagination > .active').length > 0) {
-            pagina = $('.pagination > .active')[0].innerText;
+            page = $('.pagination > .active')[0].innerText;
         }
 
         if (search != null || search.trim() !== '') {
@@ -23,7 +23,7 @@ $(document).ready(function() {
                 url: baseUrl + "/api/notes/search",
                 data: {
                     "where": search,
-                    "pagina": pagina
+                    "page": page
                 },
                 success: function(data) {
                     $('#notes_div').empty();

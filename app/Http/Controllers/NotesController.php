@@ -38,9 +38,9 @@ class NotesController extends Controller
     public function getNotes(Request $request, int $pagina)
     {
         if ($request->ajax()) {
-            $inicio = ($pagina * 6) - 6;
+            $start = ($pagina * 6) - 6;
 
-            $data = $this->noteRepository->searchNotes(null, $inicio);
+            $data = $this->noteRepository->searchNotes(null, $start);
 
             return Blade::render(
                 '<x-notes :notes="$notes" />',
@@ -57,14 +57,14 @@ class NotesController extends Controller
     public function search(Request $request)
     {
         if ($request->ajax()) {
-            $inicio = ($request->pagina * 6) - 6;
+            $start = ($request->page * 6) - 6;
 
-            $data = $this->noteRepository->searchNotes($request->where, $inicio);
+            $data = $this->noteRepository->searchNotes($request->where, $start);
 
             return Blade::render(
                 '<x-notes :notes="$notes" />',
                 [
-                    "notes" => new LengthAwarePaginator($data['notes'], $data['noteCount'], 6, $request->pagina)
+                    "notes" => new LengthAwarePaginator($data['notes'], $data['noteCount'], 6, $request->page)
                 ]
             );
         }

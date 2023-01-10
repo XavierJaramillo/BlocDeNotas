@@ -84,16 +84,16 @@
             type: 'DELETE',
             url: baseUrl + url,
             success: function(data) {
-              let pagina = 1;
+              let page = 1;
               if($('.pagination > .active').length > 0) {
-                  pagina = $('.pagination > .active')[0].innerText;
+                  page = $('.pagination > .active')[0].innerText;
               }
 
               if($('.cardsNotes').length == 1) {
-                pagina = pagina - 1;
+                page = page - 1;
               }
 
-              getNotes(pagina);
+              getNotes(page);
             }
         });
     });
