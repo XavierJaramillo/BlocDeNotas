@@ -62,6 +62,23 @@
 </div>
 
 <script>
+  function refreshNotes(changePage = false) {
+    if ($('#search').val()) {
+        $('#search').keyup();
+    } else {
+        let page = 1;
+        if ($('.pagination > .active').length > 0) {
+            page = $('.pagination > .active')[0].innerText;
+        }
+
+        if ($('.cardsNotes').length == 1 && changePage) {
+            page = page - 1;
+        }
+
+        getNotes(page);
+    }
+  }
+
   $('.js-edit').on('click', function(event) {
     let url = $(this).data('url');
 
@@ -84,16 +101,7 @@
             type: 'DELETE',
             url: baseUrl + url,
             success: function(data) {
-              let page = 1;
-              if($('.pagination > .active').length > 0) {
-                  page = $('.pagination > .active')[0].innerText;
-              }
-
-              if($('.cardsNotes').length == 1) {
-                page = page - 1;
-              }
-
-              getNotes(page);
+              refreshNotes(true);
             }
         });
     });

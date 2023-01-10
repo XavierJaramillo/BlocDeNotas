@@ -40,7 +40,7 @@ class NotesController extends Controller
         if ($request->ajax()) {
             $start = ($pagina * 6) - 6;
 
-            $data = $this->noteRepository->searchNotes(null, $start);
+            $data = $this->noteRepository->search(null, $start);
 
             return Blade::render(
                 '<x-notes :notes="$notes" />',
@@ -59,7 +59,7 @@ class NotesController extends Controller
         if ($request->ajax()) {
             $start = ($request->page * 6) - 6;
 
-            $data = $this->noteRepository->searchNotes($request->where, $start);
+            $data = $this->noteRepository->search($request->where, $start);
 
             return Blade::render(
                 '<x-notes :notes="$notes" />',
@@ -91,12 +91,12 @@ class NotesController extends Controller
     public function store(Request $request)
     {
         try {
-            $this->noteRepository->storeNote($request);
+            $this->noteRepository->store($request);
         } catch (\Exception $e) {
             return response()->json(['success' => false, 'msg' => $e->getMessage()], 400);
         }
 
-        return response()->json(['success' => true, 'msg' => 'Note guardado correctamente.'], 200);
+        return response()->json(['success' => true, 'msg' => 'Nota guardado correctamente.'], 200);
     }
 
     /**
@@ -124,8 +124,8 @@ class NotesController extends Controller
     public function destroy(Note $note)
     {
         try {
-            $note->delete();
-            return response()->json("Note eliminada correctamente.");
+            $this->noteRepository->delete($note);
+            return response()->json("Nota eliminada correctamente.");
         } catch (Exception $e) {
             return response()->json($e->getMessage());
         }

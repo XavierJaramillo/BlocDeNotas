@@ -40,15 +40,7 @@
             dataType: "json",
             data: $(this).serializeArray(),
             success: function success(data) {
-                if($('#search').val()) {
-                    $('#search').keyup();
-                } else {
-                    let pagina = 1;
-                    if($('.pagination > .active').length > 0) {
-                        pagina = $('.pagination > .active')[0].innerText;
-                    }
-                    getNotes(pagina);
-                }
+                refreshNotes();
                 $('#modal').modal('hide');
             },
             error: function error(data) {

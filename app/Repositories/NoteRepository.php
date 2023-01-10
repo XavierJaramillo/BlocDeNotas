@@ -4,10 +4,11 @@ namespace App\Repositories;
 
 use App\Models\Note;
 use App\Repositories\Interfaces\NoteRepositoryInterface;
+use Illuminate\Http\Request;
 
 class NoteRepository implements NoteRepositoryInterface
 {
-    public function searchNotes($where, $inicio, $limit = 6):array
+    public function search($where, $inicio, $limit = 6):array
     {
         $notes = new Note;
 
@@ -32,7 +33,7 @@ class NoteRepository implements NoteRepositoryInterface
         ]; 
     }
 
-    public function storeNote(object $request):void
+    public function store(Request $request):void
     {
         if (!empty($request->note_id)) {
             $note = Note::find($request->note_id);
@@ -41,5 +42,10 @@ class NoteRepository implements NoteRepositoryInterface
         }
 
         $note->fill($request->all())->save();
+    }
+
+    public function delete(Note $note):void
+    {
+        $note->delete();
     }
 }
